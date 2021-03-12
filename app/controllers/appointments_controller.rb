@@ -24,4 +24,5 @@ class AppointmentsController < ApplicationController
     appointment = Appointment.find(params[:id])
     review.destroy
   end
+
 end
