@@ -10,4 +10,10 @@ class BarbersController < ApplicationController
     render json: barber
   end
 
+  private
+
+  def barber_params
+    # byebug
+    params.permit(:user_name, :first_name, :last_name, :email, :avatar, :password, :zipcode)
+    end 
 end
