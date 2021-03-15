@@ -22,6 +22,6 @@ class ClientReviewsController < ApplicationController
 
   def destroy
     client_review = ClientReview.find(params[:id])
-    review.destroy
+    client_review.destroy
   end
 end

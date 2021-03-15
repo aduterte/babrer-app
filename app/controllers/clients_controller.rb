@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
   def index
     clients = Client.all
-    render json: barbers_reviews.to_json
+    render json: clients.to_json
   end
 
   def show
