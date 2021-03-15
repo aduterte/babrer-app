@@ -1,12 +1,12 @@
 class BarberReviewsController < ApplicationController
     def index
       barber_reviews = BarberReview.all
-      render json: barbers_reviews.to_json
+      render json: barber_reviews.to_json
     end
   
     def show
       barber_review = BarberReview.find(params[:id])
-      render json: barber
+      render json: barber_review
     end
 
     def update
@@ -22,7 +22,7 @@ class BarberReviewsController < ApplicationController
   
     def destroy
       barber_review = BarberReview.find(params[:id])
-      review.destroy
+      barber_review.destroy
     end
   
 end
