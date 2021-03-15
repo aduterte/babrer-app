@@ -15,7 +15,7 @@ BarberReview.destroy_all
 alex = Barber.create(first_name: "Alex", last_name: "D", email: "alexd@gmail.com", username: "nfamouswun", password: "password")
 danny = Client.create(first_name: "Danny", last_name: "S", email: "danny@test.com", username: "dsuccar", password: "password")
 
-BarberReview.create(barber_id: alex.id, client_id: danny.id, rating: 1, content: "he fucked my shit up")
+BarberReview.create(barber: alex, client: danny, rating: 1, content: "he fucked my shit up")
 
 
 25.times do 
