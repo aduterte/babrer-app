@@ -9,13 +9,17 @@ class BarbersController < ApplicationController
     barber = Barber.find(params[:id])
     # byebug
     if params[:avatar]
-      byebug
+      
       barber.avatar.attach(params[:avatar])
-      photo = url_for(barber.avatar)
-      barber.update
+      
+      barber.photo = url_for(barber.avatar)
+      barber.save
+      barber.update(barber_params)
+    else  
+      barber.update(barber_params)
     end
     
-    barber.update(barber_params)
+    
     render json: barber
   end
   
@@ -28,6 +32,6 @@ class BarbersController < ApplicationController
 
   def barber_params
     # byebug
-    params.permit(:file, :id, :password, :password_confirmation, :user_name, :first_name, :last_name, :email, :avatar, :zip_code)
+    params.permit(:file, :id, :password, :password_confirmation, :user_name, :first_name, :last_name, :email, :zip_code)
   end 
 end
