@@ -8,6 +8,15 @@ class PhotosController < ApplicationController
         render json: photo
     end
 
+    def update
+        photo = Photo.find(params[:id])
+        photo.update(photo_params)
+        render json: photo
+    end
+
+    def destroy
+        Photo.find(params[:id]).destroy
+    end
 
     private 
 
