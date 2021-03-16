@@ -5,6 +5,17 @@ class BarbersController < ApplicationController
 
   end
 
+  def create 
+    barber = Barber.create(barber_params)
+    if params[:avatar]
+      barber.avatar.attach(params[:avatar])
+      barber.photo = url_for(barber.avatar)
+      barber.save
+      barber.update(barber_params)
+    end
+    render json: barber
+  end
+
   def update
     barber = Barber.find(params[:id])
     # byebug
@@ -25,7 +36,11 @@ class BarbersController < ApplicationController
   
   def show
     barber = Barber.find(params[:id])
-    render json: barber
+    render :json => barber.to_json(:include => [:barber_reviews])
+  end
+
+  def destroy
+    Barber.find(params[:id]).destroy
   end
 
   private
