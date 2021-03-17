@@ -4,9 +4,21 @@ class ClientsController < ApplicationController
     render json: clients
   end
 
+  def create 
+    client = Client.create(client_params)
+    if params[:avatar]
+      client.avatar.attach(params[:avatar])
+      client.photo = url_for(client.avatar)
+      client.save
+      
+    end
+    # byebug
+    render json: client
+  end
+
   def show
     client = Client.find(params[:id])
-    render json: client
+    render :json => client.to_json(:include => [:client_reviews])
   end
 
   def update
@@ -22,9 +34,13 @@ class ClientsController < ApplicationController
     render json: client
   end
 
+  def destroy
+    Client.find(params[:id]).destroy
+  end
+
   private 
   def client_params
     # byebug
-    params.permit(:password, :password_confirmation, :user_name, :first_name, :last_name, :email, :zip_code)
+    params.permit(:avatar, :password, :password_confirmation, :username, :first_name, :last_name, :email, :zip_code)
   end 
 end
