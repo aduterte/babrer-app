@@ -6,15 +6,18 @@ class BarbersController < ApplicationController
   end
 
   def create 
+    # byebug
     barber = Barber.create(barber_params)
     if params[:avatar]
       barber.avatar.attach(params[:avatar])
       barber.photo = url_for(barber.avatar)
       barber.save
-      
     end
-    # byebug
-    render json: barber
+ 
+    payload = {user_id: barber.id}
+    token = encode(payload)
+    render json: {user: barber, token: token}
+
   end
 
   def update
@@ -48,6 +51,6 @@ class BarbersController < ApplicationController
 
   def barber_params
     # byebug
-    params.permit(:avatar, :id, :password, :password_confirmation, :username, :first_name, :last_name, :email, :zip_code)
+    params.permit(:avatar, :password, :password_confirmation, :username, :first_name, :last_name, :email, :zip_code)
   end 
 end
