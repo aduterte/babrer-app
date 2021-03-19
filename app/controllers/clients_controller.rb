@@ -5,15 +5,18 @@ class ClientsController < ApplicationController
   end
 
   def create 
+    
     client = Client.create(client_params)
     if params[:avatar]
       client.avatar.attach(params[:avatar])
       client.photo = url_for(client.avatar)
       client.save
-      
     end
-    # byebug
-    render json: client
+ 
+    payload = {user_id: client.id}
+    token = encode(payload)
+    
+    render json: {user: client, token: token}
   end
 
   def show
