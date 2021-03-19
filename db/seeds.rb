@@ -10,13 +10,20 @@ require 'faker'
 
 Barber.destroy_all
 Client.destroy_all
+ClientReview.destroy_all
 BarberReview.destroy_all
+
+BarberReviewComment.destroy_all
 
 alex = Barber.create(first_name: "Alex", last_name: "D", email: "alexd@gmail.com", username: "nfamouswun", password: "password")
 danny = Client.create(first_name: "Danny", last_name: "S", email: "danny@test.com", username: "dsuccar", password: "password")
+kanye = Client.create(first_name: "Kanye", last_name: "W", email: "a", username: "KanyeToDa", password: "a")
+linds = Client.create(first_name: "Linds", last_name: "M", email: "b", username: "LindsMonty", password: "b")
+uzo = Client.create(first_name: "Uzo", last_name: "x", email: "c", username: "Uzo", password: "c")
 
-BarberReview.create(barber: alex, client: danny, rating: 1, content: "he fucked my shit up")
-
+kanye_review = BarberReview.create(barber: alex, client: kanye, rating: 5, content: "IM A FUCKING WALKING PARADOX... no im not")
+ClientReview.create(barber: alex, client: danny, rating: 3, content: "keept on asking me about my feet")
+BarberReviewComment.create(barber_id: alex.id , barber_review: kanye_review, content: "i voted for you, ye")
 
 25.times do 
   first_name = Faker::Name.first_name  
