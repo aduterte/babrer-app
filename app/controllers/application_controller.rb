@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+    include ActionController::Serialization
 
     def secret_key
         "barBque"
