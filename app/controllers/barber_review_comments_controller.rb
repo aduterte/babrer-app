@@ -11,19 +11,23 @@ class BarberReviewCommentsController < ApplicationController
       end
     
       def update
+        barber = Barber.find(params["barber_id"])
         barber_review_comment = BarberReviewComment.find(params[:id])
         barber_review_comment.update(content: params["content"])
-        render json: barber_review_comment.to_json
+        render json: barber, include: [:photos,:barber_reviews => {:include => :barber_review_comments}]
       end
     
       def create
-        barber_review_comment = BarberReviewComment.create(content: params["content"], client_id: params['barber_id'],client_review_id: params['barber_review_id'])
-        render json: barber_review_comment.to_json 
+        barber = Barber.find(params["barber_id"])
+        barber_review_comment = BarberReviewComment.create(content: params["content"], barber_id: params['barber_id'],barber_review_id: params['barber_review_id'])
+        render json: barber, include: [:photos,:barber_reviews => {:include => :barber_review_comments}]
       end
     
       def destroy
+        barber = Barber.find(params["barber_id"])
         barber_review_comment = BarberReviewComment.find(params[:id])
         barber_review_comment.destroy
+        render json: barber, include: [:photos,:barber_reviews => {:include => :barber_review_comments}]
       end
   end
   
