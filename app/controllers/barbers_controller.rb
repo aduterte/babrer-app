@@ -41,8 +41,8 @@ class BarbersController < ApplicationController
   def show
     barber = Barber.find(params[:id])
     # render json: barber
-    render json: barber, include: [:photos,:barber_reviews => {:include => :barber_review_comments}]
-    end
+    render :json => barber.to_json(:include => [:photos, :barber_reviews => {:include => :barber_review_comments}])
+  end
 
   def destroy
     Barber.find(params[:id]).destroy

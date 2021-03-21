@@ -13,14 +13,16 @@ class BarberReviewsController < ApplicationController
     barber_review = BarberReview.find(params[:id])
     barber = Barber.find(params["barber_id"])
     barber_review.update(rating: params["rating"],content: params["content"])
-    render json: barber, include: [:photos,:barber_reviews => {:include => :barber_review_comments}]
+    # byebug
+    render :json => barber.to_json(:include =>[:photos,:barber_reviews => {:include => :barber_review_comments}])
+  
   end
 
   def create
     
     barber = Barber.find(params["barber_id"])
     barber_review = BarberReview.create(rating: params["rating"],content: params["content"], barber_id: params["barber_id"], client_id: params['client_id'])
-    render json: barber, include: [:photos,:barber_reviews => {:include => :barber_review_comments}]
+    render :json => barber.to_json(:include =>[:photos,:barber_reviews => {:include => :barber_review_comments}])
   end
 
   def destroy
