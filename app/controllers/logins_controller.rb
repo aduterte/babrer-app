@@ -6,7 +6,7 @@ class LoginsController < ApplicationController
         if user && user.authenticate(params[:login][:password])
             payload = {user_id: user.id}
             token = encode(payload)
-            render json: {user: user, token: token}
+            render json: {user: user, token: token} 
         else  
             render json: {error: "User not found"}
         end
@@ -42,7 +42,7 @@ class LoginsController < ApplicationController
         # byebug
         is_barber == "true" ? user_type = Barber : user_type = Client
         user = user_type.find(decode(token)["user_id"])
-
-        render json: {user: user}
+   
+        render json: {user: user} 
     end
 end
