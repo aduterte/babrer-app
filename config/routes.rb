@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :clients
   resources :barbers
   resources :appointments
+  resources :client_reivew_comments
+  resources :barber_review_comments
   
   post "/logins", to: "logins#login"
   get "/logins", to: "logins#token_authenticate"

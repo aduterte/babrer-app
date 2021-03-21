@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_185734) do
+ActiveRecord::Schema.define(version: 2021_03_19_003304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 2021_03_16_185734) do
     t.integer "client_id"
   end
 
+  create_table "barber_review_comments", force: :cascade do |t|
+    t.text "content"
+    t.integer "barber_review_id"
+    t.integer "barber_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "barber_reviews", force: :cascade do |t|
     t.integer "rating"
     t.text "content"
@@ -61,6 +69,14 @@ ActiveRecord::Schema.define(version: 2021_03_16_185734) do
     t.string "zip_code"
     t.string "photo"
     t.string "password_digest"
+  end
+
+  create_table "client_review_comments", force: :cascade do |t|
+    t.integer "rating"
+    t.text "content"
+    t.integer "client_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "client_reviews", force: :cascade do |t|

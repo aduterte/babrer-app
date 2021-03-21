@@ -16,7 +16,7 @@ class ClientReviewsController < ApplicationController
   end
 
   def create
-    client_review = ClientReview.create(rating: params["rating"],content: params["content"], barber_id: params["barber_id"], client: params['client_id'])
+    client_review = ClientReview.create(rating: params["rating"],content: params["content"], barber_id: params["barber_id"], client_id: params['client_id'])
     render json: client_review.to_json 
   end
 
