@@ -6,7 +6,7 @@ class LoginsController < ApplicationController
         if user && user.authenticate(params[:login][:password])
             payload = {user_id: user.id}
             token = encode(payload)
-            byebug
+            # # byebug
             user = BarberSerializer.new(user) if user_type == Barber
            
             
