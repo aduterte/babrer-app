@@ -44,3 +44,4 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 
 gem 'jwt'
+gem 'active_model_serializers'
