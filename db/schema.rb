@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 2021_03_19_003304) do
   end
 
   create_table "client_review_comments", force: :cascade do |t|
-    t.integer "rating"
     t.text "content"
+    t.integer "client_review_id"
     t.integer "client_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

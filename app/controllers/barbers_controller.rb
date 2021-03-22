@@ -2,7 +2,6 @@ class BarbersController < ApplicationController
   def index
     barbers = Barber.all
     render json: barbers.to_json
-
   end
 
   def create 

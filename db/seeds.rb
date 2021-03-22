@@ -12,6 +12,7 @@ Barber.destroy_all
 Client.destroy_all
 ClientReview.destroy_all
 BarberReview.destroy_all
+ClientReviewComment.destroy_all
 
 BarberReviewComment.destroy_all
 linds = Barber.create(first_name: "Linds", last_name: "M", email: "b", username: "LindsMonty", password: "b")
@@ -21,11 +22,13 @@ kanye = Client.create(first_name: "Kanye", last_name: "W", email: "a", username:
 
 uzo = Client.create(first_name: "Uzo", last_name: "x", email: "c", username: "Uzo", password: "c")
 
-kanye_review = BarberReview.create(barber: alex, client: kanye, rating: 5, content: "IM A FUCKING WALKING PARADOX... no im not")
-kanye_review2 = BarberReview.create(barber: linds, client: kanye, rating: 5, content: "CAME HERE FOR THE CHICKEN TENDERS")
+kanye_review = ClientReview.create(barber: alex, client: kanye, rating: 5, content: "i voted for you, ye")
+kanye_review2 = ClientReview.create(barber: linds, client: kanye, rating: 5, content: "hes feet were a little stinky")
 ClientReview.create(barber: alex, client: danny, rating: 3, content: "keept on asking me about my feet")
-BarberReviewComment.create(barber_id: alex.id , barber_review: kanye_review, content: "i voted for you, ye")
-BarberReviewComment.create(barber_id: linds.id , barber_review: kanye_review2, content: "CHICKEn BATTER ON EVERYTHING")
+ClientReview.create(barber: alex, client: danny, rating: 3, content: "keept on asking me about my feet")
+ClientReviewComment.create(client_id: kanye.id , client_review_id: kanye_review.id, content: "IM A FUCKING WALKING PARADOX... no im not")
+ClientReviewComment.create(client_id: kanye.id , client_review_id: kanye_review2.id, content: "IM A FUCKING KANYE TO DA")
+# BarberReviewComment.create(barber_id: linds.id , barber_review: kanye_review2, content: "CHICKEn BATTER ON EVERYTHING")
 
 # 25.times do 
 #   first_name = Faker::Name.first_name  
