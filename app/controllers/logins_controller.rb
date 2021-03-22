@@ -43,10 +43,10 @@ class LoginsController < ApplicationController
     def token_authenticate
         token = request.headers["Authenticate"]
         is_barber = request.headers["User"]
-        # byebug
+       
         is_barber == "true" ? user_type = Barber : user_type = Client
         user = user_type.find(decode(token)["user_id"])
-   
+ 
         render json: user
     end
 end
