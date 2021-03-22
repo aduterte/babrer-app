@@ -1,12 +1,12 @@
 class AppointmentsController < ApplicationController
   def index
     appointments = Appointment.all
-    render json: barbers_reviews.to_json
+    render json: appointments.to_json
   end
 
   def show
     appointment = Appointment.find(params[:id])
-    render json: barber
+    render json: appointment
   end
 
   def update
@@ -17,12 +17,14 @@ class AppointmentsController < ApplicationController
 
   def create
     appointment = Appointment.create(appointment_params)
+    # byebug
     render json: appointment.to_json 
   end
 
   def destroy
     appointment = Appointment.find(params[:id])
-    review.destroy
+    appointment.destroy
+    render json: {message: "item destroyed"}
   end
 
   private
