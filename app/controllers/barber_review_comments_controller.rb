@@ -20,7 +20,9 @@ class BarberReviewCommentsController < ApplicationController
       def create
         barber = Barber.find(params["barber_id"])
         barber_review_comment = BarberReviewComment.create(content: params["content"], barber_id: params['barber_id'],barber_review_id: params['barber_review_id'])
-        render :json => barber.to_json(:include =>[:photos,:barber_reviews => {:include => :barber_review_comments}])
+        # byebug
+        render json: barber
+        # render :json => barber.to_json(:include =>[:photos,:barber_reviews => {:include => :barber_review_comments}])
       end
     
       def destroy
