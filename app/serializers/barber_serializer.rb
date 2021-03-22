@@ -1,10 +1,15 @@
 class BarberSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :email, :username, :zip_code, :photo, :barber_reviews
+  attributes :id, :first_name, :last_name, :email, :username, :zip_code, :photo, :barber_reviews, :appointments
   has_many :photos
+  # has_many 
 
   def barber_reviews
     # byebug
     ActiveModel::SerializableResource.new(object.barber_reviews, each_serializer: BarberReviewsSerializer)
+  end
+
+  def appointments 
+    ActiveModel::SerializableResource.new(object.appointments, each_serializer: AppointmentsBSerializer)
   end
 end
 # create_table "barbers", force: :cascade do |t|

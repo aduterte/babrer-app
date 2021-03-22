@@ -6,4 +6,5 @@ class Barber < ApplicationRecord
     has_many :clients, through: :barber_reviews
     has_one_attached :avatar
     has_many :photos
+    has_many :appointments
 end

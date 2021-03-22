@@ -5,4 +5,5 @@ class Client < ApplicationRecord
     has_many :client_reviews
     has_many :barbers, through: :client_reviews
     has_one_attached :avatar
+    has_many :appointments
 end
