@@ -16,13 +16,19 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    appointment = Appointment.create(date: params["date"], barber_id: params["barber_id"], client_id: params['client_id'])
+    appointment = Appointment.create(appointment_params)
     render json: appointment.to_json 
   end
 
   def destroy
     appointment = Appointment.find(params[:id])
     review.destroy
+  end
+
+  private
+  
+  def appointment_params
+    params.permit(:date, :barber_id, :client_id, :b_accepted, :c_accepted, :completed)
   end
 
 end
