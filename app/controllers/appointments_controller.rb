@@ -12,14 +12,14 @@ class AppointmentsController < ApplicationController
   def update
     appointment = Appointment.find(params[:id])
     appointment.update(date: params["date"])
-    render json: appointment.to_json
+    render json: appointment
   end
 
   def create
     # byebug
     appointment = Appointment.create(appointment_params)
     
-    render json: appointment.to_json 
+    render json: appointment
   end
 
   def destroy
