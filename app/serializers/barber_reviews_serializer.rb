@@ -4,7 +4,7 @@ class BarberReviewsSerializer < ActiveModel::Serializer
   has_many :barber_review_comments
 
   def client
-    client = {username: object.client.username, id: object.client.id}
+    client = {username: object.client.username, id: object.client.id, photo: object.client.photo}
     client
   end
 end
