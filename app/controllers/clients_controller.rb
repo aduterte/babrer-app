@@ -40,8 +40,8 @@ class ClientsController < ApplicationController
 
   def show
     client = Client.find(params[:id])
-    
-    render :json => client.to_json(:include => {:client_reviews => {:include => :client_review_comments}})
+    render json: client
+    # render :json => client.to_json(:include => {:client_reviews => {:include => :client_review_comments}})
   end
 
   def destroy

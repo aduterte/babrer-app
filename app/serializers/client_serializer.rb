@@ -1,4 +1,4 @@
-class ClientsSerializer < ActiveModel::Serializer
+class ClientSerializer < ActiveModel::Serializer
   attributes :id, :first_name, :last_name, :email, :username, :zip_code, :photo, :client_reviews, :appointments
   
   # has_many 
