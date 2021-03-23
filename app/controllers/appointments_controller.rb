@@ -16,8 +16,9 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    appointment = Appointment.create(appointment_params)
     # byebug
+    appointment = Appointment.create(appointment_params)
+    
     render json: appointment.to_json 
   end
 
@@ -30,7 +31,7 @@ class AppointmentsController < ApplicationController
   private
   
   def appointment_params
-    params.permit(:date, :barber_id, :client_id, :b_accepted, :c_accepted, :completed)
+    params.require(:appointment).permit(:date, :barber_id, :client_id, :b_accepted, :c_accepted, :completed)
   end
 
 end
