@@ -10,9 +10,14 @@ class AppointmentsController < ApplicationController
   end
 
   def update
+    if defined?(params[:client_id])
+      user = Client.find(params[:client_id])
+    else 
+      user = Barber.find(params[:barber_id])
+    end
     appointment = Appointment.find(params[:id])
-    appointment.update(date: params["date"])
-    render json: appointment
+    appointment.update(date: params["date"], b_accepted: params["b_accepted"] ,c_accepted: params["c_accepted"])
+    render json: user
   end
 
   def create

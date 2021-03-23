@@ -10,11 +10,10 @@ class ClientReviewCommentsController < ApplicationController
   end
 
   def update
-
+# byebug
     client = Client.find(params["client_id"])
     client_review_comment = ClientReviewComment.find(params[:id])
     client_review_comment.update(content: params["content"])
-
     render :json => client.to_json(:include => {:client_reviews => {:include => :client_review_comments}})
   end
 
