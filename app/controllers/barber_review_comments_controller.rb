@@ -2,7 +2,7 @@ class BarberReviewCommentsController < ApplicationController
   
       def index
         barber_review_comments = BarberReviewComment.all
-        render json: barber_review_comments.to_json       
+        render json: barber_review_comments     
       end
     
       def show
@@ -21,7 +21,7 @@ class BarberReviewCommentsController < ApplicationController
         barber = Barber.find(params["barber_id"])
         barber_review_comment = BarberReviewComment.create(content: params["content"], barber_id: params['barber_id'],barber_review_id: params['barber_review_id'])
         # byebug
-        render json: barber
+        render json: barber_review_comment
         # render :json => barber.to_json(:include =>[:photos,:barber_reviews => {:include => :barber_review_comments}])
       end
     
@@ -29,7 +29,7 @@ class BarberReviewCommentsController < ApplicationController
         barber = Barber.find(params["barber_id"])
         barber_review_comment = BarberReviewComment.find(params[:id])
         barber_review_comment.destroy
-        render :json => barber.to_json(:include =>[:photos,:barber_reviews => {:include => :barber_review_comments}])
+        # render :json => barber.to_json(:include =>[:photos,:barber_reviews => {:include => :barber_review_comments}])
       end
   end
   
