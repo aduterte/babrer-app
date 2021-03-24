@@ -13,7 +13,7 @@ class BarberReviewsController < ApplicationController
     barber_review = BarberReview.find(params[:id])
     barber = Barber.find(params["barber_id"])
     barber_review.update(rating: params["rating"],content: params["content"])
-    # byebug
+ 
     render :json => barber.to_json(:include =>[:photos,:barber_reviews => {:include => :barber_review_comments}])
   
   end

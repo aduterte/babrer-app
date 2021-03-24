@@ -25,9 +25,8 @@ class ClientReviewCommentsController < ApplicationController
   end
 
   def destroy
-    client = Client.find(params["client_id"])
     client_review_comment = ClientReviewComment.find(params[:id])
     client_review_comment.destroy
-    render :json => client.to_json(:include => {:client_reviews => {:include => :client_review_comments}})
+    render :json client_review_comment
   end
 end
