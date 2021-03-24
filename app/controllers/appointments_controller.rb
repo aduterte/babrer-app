@@ -10,8 +10,9 @@ class AppointmentsController < ApplicationController
   end
 
   def update
+    # byebug
     appointment = Appointment.find(params[:id])
-    appointment.update(date: params["date"])
+    appointment.update(appointment_params)
     render json: appointment
   end
 
