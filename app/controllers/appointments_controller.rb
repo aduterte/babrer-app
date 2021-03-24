@@ -11,8 +11,8 @@ class AppointmentsController < ApplicationController
 
   def update
     appointment = Appointment.find(params[:id])
-    appointment.update(date: params["date"])
-    render json: user
+    appointment.update(date: params["date"],c_accepted: params["c_accepted"],b_accepted: params["b_accepted"])
+    render json: appointment
   end
 
   def create
