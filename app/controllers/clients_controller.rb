@@ -11,6 +11,7 @@ class ClientsController < ApplicationController
       client.avatar.attach(params[:avatar])
       client.photo = url_for(client.avatar)
       client.save
+      
     end
  
     payload = {user_id: client.id}
@@ -23,15 +24,13 @@ class ClientsController < ApplicationController
   def update
     client = Client.find(params[:id])
     # byebug
+    client.update(client_params)
     if params[:avatar]
-      
+      client.avatar.purge_later
       client.avatar.attach(params[:avatar])
-      
+      client.save
       client.photo = url_for(client.avatar)
       client.save
-      client.update(client_params)
-    else  
-      client.update(client_params)
     end
     
     
