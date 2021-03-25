@@ -5,7 +5,7 @@ class BarberSerializer < ActiveModel::Serializer
 
   def barber_reviews
     # byebug
-    ActiveModel::SerializableResource.new(object.barber_reviews, each_serializer: BarberReviewsSerializer)
+    ActiveModel::SerializableResource.new(object.barber_reviews, each_serializer: BarberReviewSerializer)
   end
 
   def appointments 

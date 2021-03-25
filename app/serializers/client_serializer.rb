@@ -5,7 +5,7 @@ class ClientSerializer < ActiveModel::Serializer
 
   def client_reviews
     # byebug
-    ActiveModel::SerializableResource.new(object.client_reviews, each_serializer: ClientReviewsSerializer)
+    ActiveModel::SerializableResource.new(object.client_reviews, each_serializer: ClientReviewSerializer)
   end
 
   def appointments 
