@@ -1,5 +1,5 @@
 class BarberReviewSerializer < ActiveModel::Serializer
-  attributes :id, :barber_id, :rating, :content, :barber_review_comment
+  attributes :id, :barber_id, :rating, :content, :barber_review_comment, :created_at
   belongs_to :client
   
 
