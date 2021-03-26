@@ -23,7 +23,9 @@ kanye = Client.create(first_name: "Kanye", last_name: "W", email: "a", username:
 
 uzo = Client.create(first_name: "Uzo", last_name: "x", email: "c", username: "Uzo", password: "c")
 
-appointment = Appointment.create({client_id: kanye.id, barber_id: alex.id, b_accepted:true, c_accepted:false, date: "2021-0-26T18:36:10.795Z", completed: false})
+appointment = Appointment.create({client_id: kanye.id, barber_id: alex.id, b_accepted:true, c_accepted:false, date: DateTime.new(2021,3,27, 4,0), completed: false})
+appointment2 = Appointment.create({client_id: kanye.id, barber_id: alex.id, b_accepted:true, c_accepted:true, date: DateTime.new(2021,3,27, 4,0)})
+
 kanye_review = BarberReview.create(barber: alex, client: kanye, rating: 5, content: "i voted for you, ye")
 kanye_review2 = ClientReview.create(barber: linds, client: kanye, rating: 5, content: "hes feet were a little stinky")
 ClientReview.create(barber: alex, client: kanye, rating: 3, content: "keept on asking me about my feet")

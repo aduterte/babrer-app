@@ -17,8 +17,8 @@ class AppointmentsController < ApplicationController
 
   def create
     # byebug
-    appointment = Appointment.create(appointment_params)
-    
+    appointment = Appointment.create({client_id: params['client_id'], barber_id: params['barber_id'], b_accepted:params['b_accepted'], c_accepted:params['c_accepted'], date: params['date'], completed: false})
+        byebug
     render json: appointment
   end
 
