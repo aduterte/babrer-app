@@ -1,8 +1,11 @@
 class ConversationSerializer < ActiveModel::Serializer
-  attributes :id, :title, :c_last_read, :b_last_read
-  has_many :messages
+  attributes :id, :title, :c_last_read, :b_last_read,:messages
   belongs_to :client 
   belongs_to :barber
+
+  def messages
+    ActiveModel::SerializableResource.new(object.messages, each_serializer: MessageSerializer)
+  end
 
   def client
     # byebug

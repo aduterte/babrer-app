@@ -8,4 +8,5 @@ class Barber < ApplicationRecord
     has_many :photos
     has_many :appointments
     has_many :conversations
+    has_many :messages, through: :conversations
 end
