@@ -10,16 +10,17 @@ class AppointmentsController < ApplicationController
   end
 
   def update
-    # byebug
+
     appointment = Appointment.find(params[:id])
     appointment.update(appointment_params)
+
     render json: appointment
   end
 
   def create
     # byebug
-    appointment = Appointment.create(appointment_params)
-    
+    appointment = Appointment.create({client_id: params['client_id'], barber_id: params['barber_id'], b_accepted:params['b_accepted'], c_accepted:params['c_accepted'], date: params['date'], completed: false})
+        byebug
     render json: appointment
   end
 
@@ -32,7 +33,7 @@ class AppointmentsController < ApplicationController
   private
   
   def appointment_params
-    params.require(:appointment).permit(:date, :barber_id, :client_id, :b_accepted, :c_accepted, :completed)
+    params.permit(:date, :barber_id, :client_id, :b_accepted, :c_accepted, :completed)
   end
 
 end

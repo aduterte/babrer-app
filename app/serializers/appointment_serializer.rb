@@ -5,6 +5,7 @@ class AppointmentSerializer < ActiveModel::Serializer
   
 
     def client 
+      # byebug
       {username: object.client.username, id: object.client.id, email: object.client.email, photo: object.client.photo}
     end
     

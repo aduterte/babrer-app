@@ -13,6 +13,7 @@ Client.destroy_all
 ClientReview.destroy_all
 BarberReview.destroy_all
 ClientReviewComment.destroy_all
+Appointment.destroy_all
 
 BarberReviewComment.destroy_all
 linds = Barber.create(first_name: "Linds", last_name: "M", email: "b", username: "LindsMonty", password: "b")
@@ -21,6 +22,9 @@ danny = Client.create(first_name: "Danny", last_name: "S", email: "danny@test.co
 kanye = Client.create(first_name: "Kanye", last_name: "W", email: "a", username: "KanyeToDa", password: "a")
 
 uzo = Client.create(first_name: "Uzo", last_name: "x", email: "c", username: "Uzo", password: "c")
+
+appointment = Appointment.create({client_id: kanye.id, barber_id: alex.id, b_accepted:true, c_accepted:false, date: DateTime.new(2021,3,27, 4,0), completed: false})
+appointment2 = Appointment.create({client_id: kanye.id, barber_id: alex.id, b_accepted:true, c_accepted:true, date: DateTime.new(2021,3,27, 4,0)})
 
 kanye_review = BarberReview.create(barber: alex, client: kanye, rating: 5, content: "i voted for you, ye")
 kanye_review2 = ClientReview.create(barber: linds, client: kanye, rating: 5, content: "hes feet were a little stinky")
