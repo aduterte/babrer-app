@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
 
         serialized_data = ConversationSerializer.new(convo)
 
-        ActionCable.server.broadcast 'messages_channel', message
+        MessagesChannel.broadcast_to convo, serialized_data
     end
 
     private
