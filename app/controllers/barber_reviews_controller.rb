@@ -18,7 +18,9 @@ class BarberReviewsController < ApplicationController
 
   def create
     barber_review = BarberReview.create(rating: params["rating"],content: params["content"], barber_id: params["barber_id"], client_id: params['client_id'])
+
     render json: barber_review
+
   end
 
   def destroy

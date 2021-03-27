@@ -1,8 +1,12 @@
 class BarberSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :email, :username, :zip_code, :photo, :barber_reviews, :appointments
+  attributes :id, :first_name, :last_name, :email, :username, :zip_code, :photo, :barber_reviews, :appointments, :conversations
   has_many :photos
+ 
   # has_many 
-
+  def conversations
+    ActiveModel::SerializableResource.new(object.conversations, each_serializer: ConversationSerializer)
+  end
+  
   def barber_reviews
     # byebug
     ActiveModel::SerializableResource.new(object.barber_reviews, each_serializer: BarberReviewSerializer)

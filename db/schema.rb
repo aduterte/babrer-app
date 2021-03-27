@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_192446) do
+ActiveRecord::Schema.define(version: 2021_03_26_194603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,31 @@ ActiveRecord::Schema.define(version: 2021_03_22_192446) do
     t.string "photo"
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "barber_id", null: false
+    t.bigint "client_id", null: false
+    t.date "c_last_read"
+    t.date "b_last_read"
+    t.index ["barber_id"], name: "index_conversations_on_barber_id"
+    t.index ["client_id"], name: "index_conversations_on_client_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "text"
+    t.bigint "conversation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "barber_id", null: false
+    t.bigint "client_id", null: false
+    t.string "sent_by"
+    t.index ["barber_id"], name: "index_messages_on_barber_id"
+    t.index ["client_id"], name: "index_messages_on_client_id"
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+  end
+
   create_table "photos", force: :cascade do |t|
     t.string "comment"
     t.integer "order"
@@ -113,4 +138,9 @@ ActiveRecord::Schema.define(version: 2021_03_22_192446) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "conversations", "barbers"
+  add_foreign_key "conversations", "clients"
+  add_foreign_key "messages", "barbers"
+  add_foreign_key "messages", "clients"
+  add_foreign_key "messages", "conversations"
 end
