@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :appointments
   resources :client_review_comments
   resources :barber_review_comments
-  resources :conversations, only: [:index, :create]
+  resources :conversations
   resources :messages, only: [:index, :create]
   
   post "/logins", to: "logins#login"

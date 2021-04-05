@@ -1,5 +1,5 @@
 class ConversationSerializer < ActiveModel::Serializer
-  attributes :id, :title, :c_last_read, :b_last_read,:messages
+  attributes :id, :title, :c_last_read, :b_last_read, :messages
   belongs_to :client 
   belongs_to :barber
 

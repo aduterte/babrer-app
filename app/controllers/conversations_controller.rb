@@ -7,14 +7,14 @@ class ConversationsController < ApplicationController
       def create
         # byebug
         conversation = Conversation.where(barber_id: params[:barber_id], client_id: params[:client_id])
-        # byebug
+        # # byebug
         if !conversation[0]
           
             conversation = Conversation.create(conversation_params)
-            byebug
+            # byebug
         end
-        serialized_data = ConversationSerializer.new(conversation)
-            ActionCable.server.broadcast 'conversations_channel', serialized_data
+        # serialized_data = ConversationSerializer.new(conversation)
+        #     ActionCable.server.broadcast 'conversations_channel', serialized_data
             
         # conversation = Conversation.new(conversation_params)
         # if conversation.save
@@ -24,6 +24,17 @@ class ConversationsController < ApplicationController
         #   ActionCable.server.broadcast 'conversations_channel', serialized_data
         #   head :ok
         # end
+        render json: conversation
+      end
+
+      def show
+        # byebug
+        conversation = Conversation.find(params[:id])
+        render json: conversation
+      end
+      def update 
+        conversation = Conversation.find(params[:id])
+        conversation.update(conversation_params)
       end
       
       private
